@@ -1,2 +1,2 @@
-# leetcode-js
-Leetcode solution (in JavaScript)
+# leetcode
+Leetcode solution (in Python)
