@@ -28,16 +28,19 @@ class Solution:
         if not root :
             return []
         
-        stack, output = [root], []
+        postorder = []
+        stack = [root]
         
         while stack :
-            current = stack.pop()
-            output.append(current.val)
+
+            node = stack.pop()
+            postorder.append(node.val)
             
-            if current.left :
-                stack.append(current.left)
-            if current.right :
-                stack.append(current.right)
+            if node.left :
+                stack.append(node.left)
                 
-        return output[::-1] 
+            if node.right :
+                stack.append(node.right)
+                
+        return postorder[::-1] 
     

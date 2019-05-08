@@ -30,20 +30,18 @@ class Solution:
             return []
         
         preorder = []
-        stack = []
+        stack = [root]
         
-        current = root
-        
-        while stack or current :
+        while stack :
             
-            while current :
-                stack.append(current)
-                preorder.append(current.val)
-                current = current.left
+            node = stack.pop()
+            preorder.append(node.val)
             
-            if stack :
-                current = stack.pop()
+            if node.right :
+                stack.append(node.right)
                 
-            current = current.right
+            if node.left :
+                stack.append(node.left)
             
         return preorder
+    

@@ -28,22 +28,20 @@ class Solution:
         if not root :
             return []
         
-        stack = []
         inorder = []
+        stack = []
         
-        current = root
+        node = root
         
-        while stack or current :
+        while stack or node :
             
-            while current :
-                stack.append(current)
-                current = current.left
+            while node :
+                stack.append(node)
+                node = node.left
                 
-            if stack :
-                current = stack.pop()
-                
-            inorder.append(current.val)
-            current = current.right
+            node = stack.pop()
+            inorder.append(node.val)
+            node = node.right
             
         return inorder
         
