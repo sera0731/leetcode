@@ -31,6 +31,9 @@ class Solution :
         visited.add(node)
         dist[node] = d
         
+        if len(visited) == N :
+            return max(dist.values())
+        
         # Visit neighbours of the current node
         for v, d2 in graph[node] :
           
