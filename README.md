@@ -1,2 +1,3 @@
-# leetcode
-Leetcode solution (in Python)
+# Table of Contents
+- Data Structures
+- Algorithms
