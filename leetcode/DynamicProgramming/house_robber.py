@@ -4,10 +4,9 @@ class Solution:
         prev = 0
         curr = 0
         
-        for n in nums :
+        for num in nums :
             tmp = curr
-            curr = max(prev + n, curr)
+            curr = max(curr, prev + num)
             prev = tmp
-        
+            
         return curr
-        
