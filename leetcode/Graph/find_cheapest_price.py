@@ -45,3 +45,29 @@ class Solution:
             
         return price if price != float('inf') else -1
     
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K: int) -> int:
+        
+        if not flights :
+            return -1
+        
+        f = collections.defaultdict(dict)
+        
+        for s,d,w in flights :
+            f[s][d] = w
+        
+        h = [(0, 0, src)]
+        
+        while h :
+            
+            price, stop, node = heapq.heappop(h)
+            
+            if node == dst :
+                return price
+            
+            for i in f[node] :
+                if stop < K+1 :
+                    heapq.heappush(h, (price+f[node][i], stop+1, i))
+                
+        return -1
+    
