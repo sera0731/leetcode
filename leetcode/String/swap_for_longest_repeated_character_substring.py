@@ -50,3 +50,36 @@ class Solution:
                         
         return ans
             
+# Enhanced version
+class Solution:
+    def maxRepOpt1(self, text: str) -> int:
+        
+        group = collections.defaultdict(list)
+        
+        for i in range(len(text)) :
+            group[text[i]].append(i)
+            
+        longest = 0
+        
+        for ch in group :
+            
+            curr = 1
+            prev = 0
+            curr_longest = 0
+            
+            g = group[ch]
+            
+            for i in range(1, len(g)) :
+                
+                if g[i] == g[i-1]+1 :
+                    curr += 1
+                else :
+                    prev = curr if g[i] == g[i-1]+2 else 0
+                    curr = 1
+                    
+                curr_longest = max(curr_longest, prev+curr)
+                
+            plus = 1 if curr_longest < len(g) else 0
+            longest = max(longest, curr_longest + plus)
+        
+        return longest
