@@ -12,11 +12,9 @@ class Solution:
             if i in memo :
                 return memo[i]
             
-            first = 0
+            first = helper(i+1)
             second = 0
             
-            if int(s[i:i+1]) < 27 :
-                first = helper(i+1)
             if int(s[i:i+2]) < 27 :
                 second = helper(i+2)
                 
@@ -31,14 +29,14 @@ class Solution:
 class Solution:
     def numDecodings(self, s: str) -> int:
         
-        if not s :
+        if not s or s[0] == '0' :
             return 0
         
         n = len(s)
         dp = [0]*(n+1)
         
         dp[0] = 1
-        dp[1] = 1 if s[0] != '0' else 0
+        dp[1] = 1
         
         for i in range(2, n+1):
             
@@ -51,4 +49,4 @@ class Solution:
                 dp[i] += dp[i-2]
         
         return dp[n]
-        
+    
