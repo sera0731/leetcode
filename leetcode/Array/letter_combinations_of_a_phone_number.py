@@ -21,3 +21,25 @@ class Solution:
         return output
             
             
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        
+        if not digits :
+            return []
+        
+        m = ["", "", "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
+        n = len(digits)
+        
+        output = [""]
+        
+        for i in digits :
+            curr = []
+            num = int(i)
+            for ch in m[num] :
+                for x in output :
+                    curr.append(x+ch)
+                    
+            output = curr
+        
+        return output
+    
