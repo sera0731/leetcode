@@ -1,22 +1,21 @@
 class Solution:
     def partitionLabels(self, S: str) -> List[int]:
         
-        last = [0]*26
+        last = {}
         
-        for i in range(len(S)) :
-            last[ord(S[i]) - ord('a')] = i
+        for i, ch in enumerate(S) :
+            last[ch] = i
         
-        idx = last_idx = 0
-        labels = []
+        output = []
+        start = end = 0
         
-        for i in range(len(S)) :
+        for i, ch in enumerate(S) :
             
-            ch = S[i]
-            idx = max(idx, last[ord(ch)-ord('a')])
+            end = max(last[ch], end)
             
-            if i == idx :
-                labels.append(idx-last_idx+1)
-                last_idx = idx + 1
+            if i == end :
+                output.append(i-start+1)
+                start = i+1
                 
-        return labels
-
+        return output
+    
