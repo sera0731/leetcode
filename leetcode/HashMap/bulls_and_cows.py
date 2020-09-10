@@ -23,24 +23,19 @@ class Solution:
 class Solution:
     def getHint(self, secret: str, guess: str) -> str:
         
-        nums = [0]*10
-        bull = cow = 0
+        m = collections.defaultdict(int)
+        bulls = cows = 0
         
         for i in range(len(secret)) :
             
-            s = secret[i]
-            g = guess[i]
-            
-            if s == g :
-                bull += 1
+            if secret[i] == guess[i] :
+                bulls += 1
             else :
-                if nums[int(s)] < 0 :
-                    cow += 1
-                if nums[int(g)] > 0 :
-                    cow += 1
-                    
-                nums[int(s)] += 1
-                nums[int(g)] -= 1
+                cows += m[secret[i]] < 0
+                cows += m[guess[i]] > 0
                 
-        return '{}A{}B'.format(bull, cow)
+                m[secret[i]] += 1
+                m[guess[i]] -= 1
                 
+        return '{}A{}B'.format(bulls, cows)
+        
