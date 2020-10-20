@@ -28,23 +28,24 @@ class Solution:
         return clone
     
     # BFS
-    def cloneGraphBFS(self, node: 'Node') -> 'Node':
+    def cloneGraph(self, node: 'Node') -> 'Node':
         
         if not node :
             return node
         
         nodes = {}
-        nodes[node] = Node(node.val, [])
+        nodes[node] = Node(node.val)
         
-        queue = collections.deque([node])
+        q = collections.deque([node])
         
-        while queue :
-            curr = queue.popleft()
-            for i in curr.neighbors :
-                if i not in nodes :
-                    nodes[i] = Node(i.val, [])
-                    queue.append(i)
-                nodes[curr].neighbors.append(nodes[i])
+        while q :
+            curr = q.popleft()
+            
+            for child in curr.neighbors :
+                if child not in nodes :
+                    nodes[child] = Node(child.val)
+                    q.append(child)
+                nodes[curr].neighbors.append(nodes[child])
                 
         return nodes[node]
-    
+            
