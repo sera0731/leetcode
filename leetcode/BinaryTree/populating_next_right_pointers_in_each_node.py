@@ -8,6 +8,7 @@ class Node:
         self.next = next
 """
 
+# Space complexity : O(N)
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
         
@@ -34,3 +35,28 @@ class Solution:
                 
         return root
     
+# Space complexity : O(1)
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        
+        if not root :
+            return
+        
+        leftmost = root
+        
+        while leftmost.left :
+            
+            head = leftmost
+            
+            while head :
+                
+                head.left.next = head.right
+                
+                if head.next :
+                    head.right.next = head.next.left
+                
+                head = head.next
+                    
+            leftmost = leftmost.left
+                
+        return root
